@@ -4,6 +4,5 @@ i made a repo
 
 because 
 
-[!Note]
-** I Can do Bold** IN a fun note block.
-
+> [!NOTE]
+> **Look:** Hello
