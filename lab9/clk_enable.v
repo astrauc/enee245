@@ -6,13 +6,13 @@ module clkEnable(
     
    
     integer count = 0;
-// 1 kHa olk enable (counting to 100000)
+// 1 Hz clk enable (counting to 100000000)
     always @(posedge clk or posedge reset)
     begin
     if (reset == 1) begin
         count <= 0; 
         clk_en <= 0;
-    end else if (count == 99999) begin
+    end else if (count == 99999999) begin
         count <= 0;
         clk_en <= 1;
     end else begin
