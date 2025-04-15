@@ -29,7 +29,7 @@ module display(
    end
 //is this the part we need to change?
 //4 to 1 MUX
-    always @(coin, product, Select) begin
+    always @(coin, product, change, Select) begin
         case (Select)
             2'b00: Hex = balance[3:0];
             2'b01: Hex = balance[7:4];

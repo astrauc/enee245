@@ -112,7 +112,7 @@ end
 // Output state logic block
 // This computes:
 // Value of the outputs given the current state and the inputs 
-always @(posedge clk or curr_state) begin
+always @(posedge clk) begin
    case(curr_state)
       S0:begin 
             balance = 0;
@@ -171,6 +171,12 @@ always @(posedge clk or curr_state) begin
             change = 0;
          end
    endcase
+
+   if (change == 1) begin
+      #10; 
+      balance = 0;
+      change = 0;
+   end
    
 end
 
