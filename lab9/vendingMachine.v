@@ -1,30 +1,45 @@
+`timescale 1ns / 1ps
 module vendingMachine (
    input clock,
    input reset,
    input [2:0] coin,
-   input [3:0] cost,
+   input [3:0] product,
    output reg [7:0] balance, //Both outputs need to be regs because they will be assigned to in an always block
-   output reg change, //whether or not the balance leftover is change. 1 means change, 0 means regular balance
+   output reg change //whether or not the balance leftover is change. 1 means change, 0 means regular balance
 
 );
 
 parameter Q = 3'b100, D = 3'b010, N = 3'b001;
-parameter P1 = 15, P2 = 20, P3 = 25, P4 = 30;
-parameter S0 = 0, S1 = 1, S2 = 2, S3 = 3, S4 = 4, S5 = 5, S6 = 6, S7 = 7,
-   S8 = 8, S9 = 9, S10 = 10, S11 = 11, S12 = 12;
+parameter P1 = 4'b0001, P2 = 4'b0010, P3 = 4'b0100, P4 = 4'b1000;
+parameter S0 = 4'b0000, S1 = 4'b0001, S2 = 4'b0010, S3 = 5'b0011, S4 = 4'b0100,
+ S5 = 4'b0101, S6 = 4'b0110, S7 = 4'b0111,
+   S8 = 4'b1000, S9 = 4'b1001, S10 = 4'b1010, 
+   S11 = 4'b1011, S12 = 4'b1100;
 
-reg curr_state = S0;
-reg next_state;
+reg [3:0] curr_state = S0;
+reg [3:0] next_state = S0;
+
+
 // **Note** This is a mealy machine (i think because it has inputs)
 
 // Next state logic block
 // This computes:
 // What state do we need to go to given the current state and the inputs
 // Combinational logic block
-always @(coin or cost) begin
+always @(coin or product) begin
+   $display("Recieved coin or produce");
    if (coin == Q) begin
+    $display("Got a quarter");
+    $display("What is S0? %d", S0);
+    $display("What is curr state? %d", curr_state);
+    if (curr_state == S0) begin
+        $display("ok!");
+        end
       case(curr_state)
-         S0: next_state = S5;
+         S0: begin
+            next_state = S5;
+            $display("Miised");
+            end
          S1: next_state = S6;
          S2: next_state = S7;
          S3: next_state = S7;
@@ -34,6 +49,7 @@ always @(coin or cost) begin
          S7: next_state = S7;
          default: next_state = S0;
       endcase
+      $display("Next state = %d", next_state);
    end else if (coin == D) begin
       case(curr_state)
          S0: next_state = S2;
@@ -60,7 +76,7 @@ always @(coin or cost) begin
       endcase
    end
    
-   if (cost == P1) begin
+   if (product == P1) begin
       case(curr_state)
          S3: next_state = S8;
          S4: next_state = S9;
@@ -69,7 +85,7 @@ always @(coin or cost) begin
          S7: next_state = S12;
          default: next_state = curr_state;
       endcase
-   end else if (cost == P2) begin
+   end else if (product == P2) begin
       case(curr_state)
          S4: next_state = S8;
          S5: next_state = S9;
@@ -77,42 +93,44 @@ always @(coin or cost) begin
          S7: next_state = S11;
          default: next_state = curr_state;
       endcase
-   end else if (cost == P3) begin
+   end else if (product == P3) begin
       case(curr_state)
          S5: next_state = S8;
          S6: next_state = S9;
          S7: next_state = S10;
          default: next_state = curr_state;
       endcase
-   end else if (cost == P4) begin
+   end else if (product == P4) begin
       case(curr_state)
          S6: next_state = S8;
          S7: next_state = S9;
          default: next_state = curr_state;
       endcase
    end else begin //case where cost = 0
-      next_state = curr_state;
+      next_state = next_state;
    end
+   $display("Next state = %d", next_state);
 end
 
 // State memory block
 // This computes: 
 // Actually updates the state
 // Sequential block
-always @(posedge clk or posedge reset) begin
-   if (reset = 1'b1) begin
+always @(posedge clock or posedge reset) begin
+   if (reset == 1'b1) begin
       curr_state <= S0;
-      change <= 0;
+//      change <= 0;
    end else begin
       curr_state <= next_state;
-      change <= 0;
+      $display("curr state = %d", curr_state);
+//      change <= 0;
    end
 end
 
 // Output state logic block
 // This computes:
 // Value of the outputs given the current state and the inputs 
-always @(posedge clk) begin
+always @(curr_state) begin
    case(curr_state)
       S0:begin 
             balance = 0;

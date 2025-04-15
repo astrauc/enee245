@@ -11,13 +11,13 @@ module display(
     wire clock1;
     wire change;
     wire [7:0] balance;
-    wire [7:0] cost;
+    reg [7:0] cost;
     wire [1:0] Select;
     reg [3:0] Hex;
 
 
    always @(product) begin
-      case (product):
+      case (product)
          4'b0000: cost = 0;
          4'b0001: cost = 15;
          4'b0010: cost = 20;
