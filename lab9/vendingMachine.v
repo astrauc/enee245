@@ -27,19 +27,10 @@ reg [3:0] next_state = S0;
 // What state do we need to go to given the current state and the inputs
 // Combinational logic block
 always @(coin or product) begin
-   $display("Recieved coin or produce");
-   if (coin == Q) begin
-    $display("Got a quarter");
-    $display("What is S0? %d", S0);
-    $display("What is curr state? %d", curr_state);
-    if (curr_state == S0) begin
-        $display("ok!");
-        end
+  
+    if (coin == Q) begin
       case(curr_state)
-         S0: begin
-            next_state = S5;
-            $display("Miised");
-            end
+         S0: next_state = S5;
          S1: next_state = S6;
          S2: next_state = S7;
          S3: next_state = S7;
@@ -49,7 +40,7 @@ always @(coin or product) begin
          S7: next_state = S7;
          default: next_state = S0;
       endcase
-      $display("Next state = %d", next_state);
+      
    end else if (coin == D) begin
       case(curr_state)
          S0: next_state = S2;
@@ -62,7 +53,7 @@ always @(coin or product) begin
          S7: next_state = S7;
          default: next_state = S0;
       endcase
-   end else begin//coin is N (nickel)
+   end else if (coin == N) begin//coin is N (nickel)
       case(curr_state)
          S0: next_state = S1;
          S1: next_state = S2;
@@ -74,6 +65,8 @@ always @(coin or product) begin
          S7: next_state = S7;
          default: next_state = S0;
       endcase
+   end else begin
+    next_state = next_state;
    end
    
    if (product == P1) begin
@@ -109,7 +102,7 @@ always @(coin or product) begin
    end else begin //case where cost = 0
       next_state = next_state;
    end
-   $display("Next state = %d", next_state);
+   
 end
 
 // State memory block
@@ -122,8 +115,7 @@ always @(posedge clock or posedge reset) begin
 //      change <= 0;
    end else begin
       curr_state <= next_state;
-      $display("curr state = %d", curr_state);
-//      change <= 0;
+      
    end
 end
 
@@ -189,13 +181,16 @@ always @(curr_state) begin
             change = 0;
          end
    endcase
-
-   if (change == 1) begin
-      #10; 
-      balance = 0;
-      change = 0;
    end
    
+always @(change) begin
+    if (change == 1) begin
+        #5;
+        balance = 0;
+        change = 0;
+        next_state = S0;
+        end
+
 end
 
 endmodule

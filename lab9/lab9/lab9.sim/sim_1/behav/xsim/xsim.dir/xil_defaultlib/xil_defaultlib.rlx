@@ -1,0 +1,12 @@
+0.7
+2020.2
+Nov 18 2020
+09:47:47
+C:/Users/astrauch/lab9/lab9.sim/sim_1/behav/xsim/glbl.v,1605673889,verilog,,,,glbl,,,,,,,,
+C:/Users/astrauch/lab9/lab9.srcs/sim_1/new/vendingMachine_tb.v,1744752395,verilog,,,,vendingMachine_tb,,,,,,,,
+V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/anodeDriver.v,1744724010,verilog,,V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/clk_enable.v,,anodeDriver,,,,,,,,
+V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/clk_enable.v,1744656214,verilog,,V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/clock.v,,clkEnable,,,,,,,,
+V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/clock.v,1744656236,verilog,,V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/hex2sevseg.v,,clock,,,,,,,,
+V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/display.v,1744744302,verilog,,,,display,,,,,,,,
+V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/hex2sevseg.v,1744654098,verilog,,V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/vendingMachine.v,,hex2sevseg,,,,,,,,
+V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/vendingMachine.v,1744753984,verilog,,C:/Users/astrauch/lab9/lab9.srcs/sim_1/new/vendingMachine_tb.v,,vendingMachine,,,,,,,,

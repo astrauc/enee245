@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/vendingMachine.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module vendingMachine
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/astrauch/lab9/lab9.srcs/sim_1/new/vendingMachine_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module vendingMachine_tb
