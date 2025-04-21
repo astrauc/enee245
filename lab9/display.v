@@ -40,7 +40,7 @@ module display(
 
    //I think the clock input should be clock1, but not totally sure
 
-    vendingMachine VM1 (.clock(clock1), .reset(reset), .coin(coin), .cost(cost), .balance(balance), .change(change));
+    vendingMachine VM1 (.clock(clock1), .reset(reset), .coin(coin), .product(product), .balance(balance), .change(change));
     clock C2 (.clk(clk), .reset(reset), .clk_en(clock1));
     clkEnable C1 (.clk(clk), .reset (reset), .clk_en (clkEn) ) ;
     anodeDriver AD1 (.clk(clk),.clk_en(clkEn), .reset(reset), .AN(AN), .S(Select)) ;

@@ -1,32 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35ticpg236-1L" LaunchTime="1744750199">
   <File Type="PA-TCL" Name="vendingMachine.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="vendingMachine_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="vendingMachine_reports.tcl"/>
   <File Type="RDS-RDS" Name="vendingMachine.vds"/>
   <File Type="RDS-UTIL" Name="vendingMachine_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="vendingMachine_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="vendingMachine.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="vendingMachine_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="vendingMachine_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/vendingMachine.v">
+    <File Path="$PPRDIR/../vendingMachine.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/anodeDriver.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/clk_enable.v">
+    <File Path="$PPRDIR/../anodeDriver.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -34,7 +23,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/clock.v">
+    <File Path="$PPRDIR/../clk_enable.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -42,7 +31,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/hex2sevseg.v">
+    <File Path="$PPRDIR/../clock.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -50,7 +39,15 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab9/display.v">
+    <File Path="$PPRDIR/../hex2sevseg.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../display.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -76,9 +73,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
