@@ -1,0 +1,4 @@
+Running: xsim.dir/bigman_tb_behav/xsimk.exe -simmode gui -wdb bigman_tb_behav.wdb -simrunnum 0 -socket 50615
+Design successfully loaded
+Design Loading Memory Usage: 9768 KB (Peak: 9768 KB)
+Design Loading CPU Usage: 77 ms
