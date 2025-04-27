@@ -20,7 +20,7 @@ module datapath (
     end
 
     always @(posedge clk or posedge clr) begin
-
+        //TODO: The datapath!
     end
 
     
