@@ -5,22 +5,25 @@ module controller (
     input clr, 
     output en_a,
     output en_del,
-    output en_sqrt,
+    output en_sq,
     output en_out, 
     output ld_add,
 );
 
 parameter START = 2'b00, GO = 32'b01, ENDS = 2'b10;
+//start state just inits.
+//go will always keep adding and whatever
+//ends will say time to divide by 2 subtract 1
 
 reg [1:0] curr_state;
 reg [1:0] next_state;
 
-initial begin
+initial begin //set initial state
     curr_state = START;
     next_state = START;
 end 
 
-always @(start, clr, greater) begin 
+always @(start, clr, greater) begin //inputs
     if (clr) begin 
         curr_state = START;
         next_state = START;
@@ -29,10 +32,9 @@ always @(start, clr, greater) begin
     
 end 
 
-always @(negedge clk or posedge clr) begin
+always @(negedge clk or posedge clr) begin //at the negedge because datapath already has the posedge
    if (clr) begin
       curr_state <= START;
-//      change <= 0;
    end else begin
       curr_state <= next_state;
       
@@ -44,23 +46,23 @@ always @(curr_state) begin
         START: begin 
             en_a = 1;
             en_del = 1;
-            en_sqrt = 1;
+            en_sq = 1;
             en_out = 0;
-            ld_add = 0;
+            ld_add = 0; //ld instead of add
         end
         GO: begin 
             en_a = 1;
             en_del = 1;
-            en_sqrt = 1;
+            en_sq = 1;
             en_out = 0;
-            ld_add = 1;
+            ld_add = 1; //add instead of ld
         end 
         ENDS: begin
-            en_a = 0;
+            en_a = 0; //no more updating
             en_del = 0;
-            en_sqrt = 0;
+            en_sq = 0;
             en_out = 1;
-            ld_add = 0;
+            ld_add = 0; //do not think it matters since the rest are disabled
         end
     endcase
 

@@ -3,5 +3,5 @@ module bin2bcd (
     output reg [11:0] bcd
 );
 
-
+//TODO: Do the thing
 endmodule
