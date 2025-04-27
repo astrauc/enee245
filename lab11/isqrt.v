@@ -1,16 +1,7 @@
+// this is the equivalent to bigman from lab10
 module isqrt (
-    input [11:0] a,
-    input clk, 
-    input clr, 
-    input en_a,
-    input en_del,
-    input en_sqrt,
-    input en_out, 
-    input ld_add,
-    output reg [3:0] sqrt.
-    output reg greater
+    input [7:0] a,
+    input [3:0] sqrt
 );
-
-    
     
 endmodule
