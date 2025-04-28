@@ -4,10 +4,10 @@ module datapath (
     input clr, 
     input en_a,
     input en_del,
-    input en_sqrt,
+    input en_sq,
     input en_out, 
     input ld_add,
-    output reg [3:0] sqrt.
+    output reg [3:0] sqrt,
     output reg greater
 );
 
@@ -20,7 +20,32 @@ module datapath (
     end
 
     always @(posedge clk or posedge clr) begin
-        //TODO: The datapath!
+        if (clr) begin
+            greater = 0;
+            sq = 1;
+            del = 3;
+            sqrt = 0;
+        end else begin
+            if (sq >= en_a ? a : 0) begin 
+                greater = 1;
+
+            end else if (!ld_add) begin
+                if (en_del) del = 3;
+                if (en_sq) sq = 1;
+            end else if (ld_add) begin
+                if (en_sq) sq = sq + del;
+                if (en_del) del = del + 2;
+            end
+
+
+
+            if (en_out) begin
+                sqrt = (del >> 1) - 1;
+            end
+        end
+
+
+
     end
 
     
