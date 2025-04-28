@@ -1,4 +1,4 @@
-module bin2bcd (
+module BCDConvert (
     input           clk,
     input           en,
     input   [7:0]  bin_d_in,
