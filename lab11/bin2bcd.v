@@ -13,5 +13,6 @@ always @(bin) begin
 	    if (bcd[11:8] >= 5) bcd[11:8] = bcd[11:8] + 3;
 	    bcd = {bcd[10:0],bin[7-i]};				//Shift one bit, and shift in proper bit from input 
     end
+//    $display("returning bcd: %d%d%d", bcd[11:8],bcd[7:4],bcd[3:0]);
 end
 endmodule

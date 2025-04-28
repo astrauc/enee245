@@ -7,9 +7,9 @@ module display_sqrt (
    output [3:0] AN
 );
 
-   reg [3:0] sqrt;
-   reg [11:0] sqrt_bcd;
-   reg [11:0] a_bcd;
+   wire [3:0] sqrt;
+   wire [11:0] sqrt_bcd;
+   wire [11:0] a_bcd;
    reg [15:0] disp;
 
    bin2bcd B (.bin(a), .bcd(a_bcd));
@@ -23,9 +23,18 @@ module display_sqrt (
    );
 
    bin2bcd Ba (.bin(a), .bcd(a_bcd));
-   bin2bcd Bsqrt (.bin({4'b0000, sqrt}), .bcd(sqrt_bcd));
+   bin2bcd Bsqrt (.bin({4'b0000,sqrt}), .bcd(sqrt_bcd));
 
+   always @(sqrt_bcd) begin 
+      if (sqrt == 0) begin 
+         disp = {4'b000, a_bcd};
+        
+      end else if (sqrt > 0) begin
+         disp = {4'b0000, sqrt_bcd};
    
+      end
+      
+   end
 
    
 endmodule

@@ -1,5 +1,5 @@
 module datapath (
-    input [11:0] a,
+    input [7:0] a,
     input clk, 
     input clr, 
     input en_a,
@@ -26,13 +26,14 @@ module datapath (
             del = 3;
             sqrt = 0;
         end else begin
-            if (sq >= en_a ? a : 0) begin 
+            if (en_a && sq > a) begin 
                 greater = 1;
 
             end else if (!ld_add) begin
                 if (en_del) del = 3;
                 if (en_sq) sq = 1;
             end else if (ld_add) begin
+           
                 if (en_sq) sq = sq + del;
                 if (en_del) del = del + 2;
             end
@@ -40,6 +41,7 @@ module datapath (
 
 
             if (en_out) begin
+            
                 sqrt = (del >> 1) - 1;
             end
         end

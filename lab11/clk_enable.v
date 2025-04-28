@@ -12,7 +12,7 @@ module clkEnable(
     if (reset == 1) begin
         count <= 0; 
         clk_en <= 0;
-    end else if (count == 99999) begin
+    end else if (count == 9) begin
         count <= 0;
         clk_en <= 1;
     end else begin

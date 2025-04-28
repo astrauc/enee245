@@ -30,6 +30,7 @@ always @(start, clr, greater) begin //inputs
     end else if (greater) next_state = ENDS;
     else if (start) next_state = GO;
     
+    
 end 
 
 always @(negedge clk or posedge clr) begin //at the negedge because datapath already has the posedge
