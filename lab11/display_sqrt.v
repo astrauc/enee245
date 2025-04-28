@@ -12,8 +12,7 @@ module display_sqrt (
    wire [11:0] a_bcd;
    reg [15:0] disp;
 
-   bin2bcd B (.bin(a), .bcd(a_bcd));
-   bin2bcd B2(.bin({4'b0000, sqrt}), .bcd(sqrt_bcd));
+  
    isqrt I (
       .a(a), .clk(clk), .clr(clr), .start(start), .sqrt(sqrt)
    );

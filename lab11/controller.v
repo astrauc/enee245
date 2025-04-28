@@ -25,7 +25,7 @@ end
 
 always @(start, clr, greater) begin //inputs
     if (clr) begin 
-        curr_state = START;
+        
         next_state = START;
     end else if (greater) next_state = ENDS;
     else if (start) next_state = GO;
