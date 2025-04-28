@@ -1,0 +1,4 @@
+Running: xsim.dir/isqrt_tb_behav/xsimk.exe -simmode gui -wdb isqrt_tb_behav.wdb -simrunnum 0 -socket 49523
+Design successfully loaded
+Design Loading Memory Usage: 9788 KB (Peak: 9788 KB)
+Design Loading CPU Usage: 109 ms
