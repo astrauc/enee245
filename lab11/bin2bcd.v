@@ -63,7 +63,7 @@ module BCDConvert (
                     
                     1:
                         begin
-                        if(bcd_data[19:12] > 4)
+                        if(bcd_data[15:12] > 4)
                             begin
                                 bcd_data[19:12] <= bcd_data[19:12] + 3;
                             end
@@ -72,7 +72,7 @@ module BCDConvert (
                         
                     2:
                         begin
-                        if((add_counter == 2) && (bcd_data[23:20] > 4))
+                        if((add_counter == 2) && (bcd_data[19:16] > 4))
                             begin
                                 bcd_data[19:16] <= bcd_data[19:16] + 3;
                             end
