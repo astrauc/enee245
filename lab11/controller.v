@@ -3,11 +3,11 @@ module controller (
     input start, 
     input clk,
     input clr, 
-    output en_a,
-    output en_del,
-    output en_sq,
-    output en_out, 
-    output ld_add,
+    output reg en_a,
+    output reg en_del,
+    output reg en_sq,
+    output reg en_out, 
+    output reg ld_add
 );
 
 parameter START = 2'b00, GO = 32'b01, ENDS = 2'b10;
@@ -25,10 +25,11 @@ end
 
 always @(start, clr, greater) begin //inputs
     if (clr) begin 
-        curr_state = START;
+        
         next_state = START;
     end else if (greater) next_state = ENDS;
     else if (start) next_state = GO;
+    
     
 end 
 

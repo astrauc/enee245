@@ -1,0 +1,18 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab11/anodeDriver.v" \
+"V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab11/bin2bcd.v" \
+"V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab11/clk_enable.v" \
+"V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab11/controller.v" \
+"V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab11/datapath.v" \
+"V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab11/display.v" \
+"V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab11/display_sqrt.v" \
+"V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab11/hex2sevseg.v" \
+"V:/Users/a1str/OneDrive - University of Maryland/Desktop/ENEE245/enee245/lab11/isqrt.v" \
+"../../../../project_1.srcs/sim_1/new/display_sqrt_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
