@@ -4,7 +4,7 @@ I think that it is not too bad. There are some weird cases that we may need to b
 
 One thing that is confusing still to me is the rounding; I am not sure how to do that with verilog code yet. 
 
-*** Please read all of sections 12.1 through 12.5 before our ponder session ***
+**Please read all of sections 12.1 through 12.5 before our ponder session**
 
 I have added the display family of things and empty files. In case you wanted to get started or make your own version of the code, branch off from main to avoid merge conflicts.
 >```sh
