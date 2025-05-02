@@ -10,6 +10,7 @@ I have added the display family of things and empty files. In case you wanted to
 >```sh
 > git checkout -b <YOUR_NAME>_lab12
 > ```
+
 >[!NOTE]
 > The -b flag creates a new branch, so this command is equivalent to running "git branch <branch_name>" then "git checkout <branch_name>"
 
