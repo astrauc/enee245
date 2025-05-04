@@ -7,3 +7,5 @@ So I followed the instructions on the prelab and also looked some stuff up becau
 >[!NOTE]
 >I have no idea how correct my implementations are .
 > I did not feel like testing it all today, so lets do that tomorrow (Tuesday)
+
+btw the display module doesnt work and also lab10 for this womp womp
