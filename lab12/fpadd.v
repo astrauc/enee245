@@ -30,7 +30,7 @@ module fpadd (
     );
 
     
-    datapath D();
+    datapath D(
         .A(a),
         .B(b),
         .en_gt(en_gt),
@@ -46,6 +46,7 @@ module fpadd (
         .sign_lt(sign_lt),
         .mant4(mant4),
         .mant5(mant5),
-        .s(s),
+        .s(s)
+    );
 
 endmodule

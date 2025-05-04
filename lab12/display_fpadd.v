@@ -11,22 +11,29 @@ module display_fpadd (
     wire [7:0] A = sw[15:8];
     wire [7:0] B = sw[7:0];
     wire [7:0] sum;
-    wire [15:0] display; //number to display
+    wire [15:0] disp; //number to display
     
-    floatingPointAdder fp(/*inputs and outputs*/);
+    floatingPointAdder fpadd(
+        .a(A),
+        .b(B),
+        .clk(clk),
+        .clr(clr),
+        .start(start),
+        .s(sum)
+    );
     
-    fourDigitDisplay disp(
+    fourDigitDisplay display(
         .clk(clk),
         .reset(clr),
-        .dig0(display[15:12]),
-        .dig1(display[11:8]),
-        .dig2(display[7:4]),
-        .dig3(display[3:0]),
+        .dig0(disp[15:12]),
+        .dig1(disp[11:8]),
+        .dig2(disp[7:4]),
+        .dig3(disp[3:0]),
         .AN(AN),
         .CA(CA)
     );
 
-    assign display = (show_sum) ? {8’b0,sum} : {A,B}; 
+    assign disp = (show_sum) ? {8’b0,sum} : {A,B}; 
 
     
 endmodule

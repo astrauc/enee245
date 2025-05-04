@@ -7,14 +7,14 @@ module controller (
     input mant5,
     input mant4,
     input greater, //greater == 1 means A[6:0] is larger
-    output en_ld,
-    output en_gt,
-    output en_addsub,
-    output en_norm,
-    output en_out,
-    output add_sub,
-    output norm_lr,
-    output ld_AB
+    output reg en_ld,
+    output reg en_gt,
+    output reg en_addsub,
+    output reg en_norm,
+    output reg en_out,
+    output reg add_sub,
+    output reg norm_lr,
+    output reg ld_AB
 );
 
 parameter START = 3'b000, INIT_A = 3'b001, INIT_B = 3'b010, ADD = 3'b011, SUB = 3'b100, NORML = 3'b101, NORMR = 3'b110, DONE = 3'b111;

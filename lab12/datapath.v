@@ -9,12 +9,12 @@ module datapath (
     input add_sub,
     input norm_lr,
     input ld_AB,
-    output greater,
-    output sign_gt, 
-    output sign_lt,
-    output mant4,
-    output mant5,
-    output s,
+    output reg greater,
+    output reg sign_gt, 
+    output reg sign_lt,
+    output reg mant4,
+    output reg mant5,
+    output reg s,
 );
     
 reg sign_ans;
