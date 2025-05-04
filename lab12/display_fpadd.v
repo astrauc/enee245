@@ -13,7 +13,7 @@ module display_fpadd (
     wire [7:0] sum;
     wire [15:0] disp; //number to display
     
-    floatingPointAdder fpadd(
+    fpadd F(
         .a(A),
         .b(B),
         .clk(clk),
@@ -22,7 +22,7 @@ module display_fpadd (
         .s(sum)
     );
     
-    fourDigitDisplay display(
+    display D(
         .clk(clk),
         .reset(clr),
         .dig0(disp[15:12]),
