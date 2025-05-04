@@ -14,7 +14,9 @@ module datapath (
     output reg sign_lt,
     output reg mant4,
     output reg mant5,
-    output reg s,
+    output reg [7:0] s,
+    input clk,
+    input clr
 );
     
 reg sign_ans;
@@ -28,6 +30,7 @@ reg [7:0] gt;
 reg [7:0] lt;
 
 always @(posedge clk or posedge clr) begin 
+    
     if (clr) begin                                      // clear
         mant_lt = 0;
         mant_gt = 0;
@@ -60,11 +63,18 @@ always @(posedge clk or posedge clr) begin
             exp_ans = exp_gt;
             sign_ans = sign_gt;
             mant_lt = mant_lt >> (exp_gt - exp_lt);
+            if (mant_lt[0] == 1) begin
+                mant_lt = mant_lt + 1;
+            end
         end else if (en_addsub) begin                   // addition or suubtraction
             if (add_sub) begin //add
-                mant_ans = mant_gt + mant_ls;           
+                mant_ans = mant_gt + mant_lt;
+                mant4 = mant_ans[3];
+                mant5 = mant_ans[4];           
             end else begin //subtract
-                mant_ans = mant_gt - mant_ls;
+                mant_ans = mant_gt - mant_lt;
+                mant4 = mant_ans[3];
+                mant5 = mant_ans[4];
             end
         end else if (en_norm) begin  
             //normalize

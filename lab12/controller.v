@@ -31,7 +31,7 @@ always @(start, clr, sign_gt, sign_lt, mant5, mant4, greater) begin //inputs
     if (clr) begin 
         next_state = START;
     end else begin 
-    case(curr_state):
+    case(curr_state)
         START: begin 
             if (start && greater) next_state = INIT_A;
             else if (start) next_state = INIT_B;
