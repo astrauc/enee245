@@ -6,9 +6,11 @@ module controller (
     input sign_lt,
     input mant5,
     input mant4,
-    input greater
+    input greater, //greater == 1 means A[6:0] is larger
     output en_ld,
-    output en_ans,
+    output en_gt,
+    output en_addsub,
+    output en_norm,
     output en_out,
     output add_sub,
     output norm_lr,
@@ -28,11 +30,11 @@ end
 always @(start, clr, sign_gt, sign_lt, mant5, mant4, greater) begin //inputs
     if (clr) begin 
         next_state = START;
-    end 
+    end else begin 
     case(curr_state):
         START: begin 
             if (start && greater) next_state = INIT_A;
-            else if (start) next_state = INIT_B
+            else if (start) next_state = INIT_B;
         end
         INIT_A: begin
             if (sign_gt == sign_lt) next_state = ADD;
@@ -52,7 +54,21 @@ always @(start, clr, sign_gt, sign_lt, mant5, mant4, greater) begin //inputs
             else if (mant5 == 0 && mant4 == 0) next_state = NORML;
             else next_state = DONE;
         end
+        NORML: begin 
+            if (mant5) next_state = NORMR;
+            else if (mant5 == 0 && mant4 == 0) next_state = NORML;
+            else next_state = DONE;
+        end
+        NORMR: begin 
+            if (mant5) next_state = NORMR;
+            else if (mant5 == 0 && mant4 == 0) next_state = NORML;
+            else next_state = DONE;
+        end
+        DONE: begin 
+            next_state = DONE;
+        end
     endcase
+    end
     
     
 end 
@@ -66,36 +82,87 @@ always @(negedge clk or posedge clr) begin //at the negedge because datapath alr
    end
 end
 
-  output en_ld,
-    output en_ans,
-    output en_out,
-    output add_sub,
-    output norm_lr,
-    output ld_AB
-
-
 always @(curr_state) begin 
     case(curr_state)
         START: begin 
-            en_ans = 0;
+            en_gt = 1;
+            en_ld = 0;
+            en_addsub = 0;
+            en_norm = 0;
             en_out = 0;
             add_sub = 0;
+            norm_lr = 0;
             ld_AB = 0;
-            
         end
-        GO: begin 
-            en_a = 1;
-            en_del = 1;
-            en_sq = 1;
+        INIT_A: begin 
+            en_gt = 0;
+            en_ld = 1;
+            en_addsub = 0;
+            en_norm = 0;
             en_out = 0;
-            ld_add = 1; //add instead of ld
+            add_sub = 0;
+            norm_lr = 0;
+            ld_AB = 1;
         end 
-        ENDS: begin
-            en_a = 0; //no more updating
-            en_del = 0;
-            en_sq = 0;
+        INIT_B: begin
+            en_gt = 0;
+            en_ld = 1;
+            en_addsub = 0;
+            en_norm = 0;
+            en_out = 0;
+            add_sub = 0;
+            norm_lr = 0;
+            ld_AB = 0; 
+        end
+        ADD: begin
+            en_gt = 0;
+            en_ld = 0;
+            en_addsub = 1;
+            en_norm = 0;
+            en_out = 0;
+            add_sub = 1;
+            norm_lr = 0;
+            ld_AB = 0;  
+        end
+        SUB: begin
+            en_gt = 0;
+            en_ld = 0;
+            en_addsub = 1;
+            en_norm = 0;
+            en_out = 0;
+            add_sub = 0;
+            norm_lr = 0;
+            ld_AB = 0; 
+        end
+        NORML: begin
+            en_gt = 0;
+            en_ld = 0;
+            en_addsub = 0;
+            en_norm = 1;
+            en_out = 0;
+            add_sub = 0;
+            norm_lr = 1;
+            ld_AB = 0;
+        end
+        NORMR: begin
+            en_gt = 0;
+            en_ld = 0;
+            en_addsub = 0;
+            en_norm = 1;
+            en_out = 0;
+            add_sub = 0;
+            norm_lr = 0;
+            ld_AB = 0;
+        end
+        DONE: begin
+            en_gt = 0;
+            en_ld = 0;
+            en_addsub = 0;
+            en_norm = 0;
             en_out = 1;
-            ld_add = 0; //do not think it matters since the rest are disabled
+            add_sub = 0;
+            norm_lr = 0;
+            ld_AB = 0;
         end
     endcase
 
