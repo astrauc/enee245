@@ -4,7 +4,7 @@ module fpadd (
         input clk,
         input clr,
         input start,
-        output s
+        output [7:0] s
     );
     
     wire en_gt, en_ld, en_addsub, en_norm, en_out;
